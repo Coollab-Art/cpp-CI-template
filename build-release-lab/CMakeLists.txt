@@ -1,0 +1,21 @@
+cmake_minimum_required(VERSION 3.20)
+project(BuildReleaseLearningLab LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+add_library(lab_core app/src/calculator.cpp)
+target_include_directories(lab_core PUBLIC app/include)
+add_executable(lab_demo app/src/main.cpp)
+target_link_libraries(lab_demo PRIVATE lab_core)
+
+enable_testing()
+add_executable(lab_tests tests/test_main.cpp)
+target_link_libraries(lab_tests PRIVATE lab_core)
+add_test(NAME lab_unit_tests COMMAND lab_tests)
+
+if(MSVC)
+  target_compile_options(lab_core PRIVATE /W4)
+else()
+  target_compile_options(lab_core PRIVATE -Wall -Wextra -Wpedantic)
+endif()

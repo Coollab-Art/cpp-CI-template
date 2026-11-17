@@ -1,0 +1,1 @@
+# Shared logging component seed\n\nInitialise this directory as a local Git repository in Lesson 3.\n
