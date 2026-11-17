@@ -1,0 +1,1 @@
+#pragma once\nnamespace shared_logging { void info(const char* message); void warning(const char* message); }\n
